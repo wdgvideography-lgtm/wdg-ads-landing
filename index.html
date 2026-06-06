@@ -562,9 +562,7 @@
       <div id="enquire" class="contact-card">
         <h3>Get a Free Quote</h3>
         <p>We'll get back to you within 24 hours.</p>
-        <form id="enquiryForm" action="https://formspree.io/f/xvzyvwgb" method="POST" novalidate>
-          <input type="hidden" name="_subject" value="New Google Ads Enquiry — WDG Landing Page">
-          <input type="hidden" name="source" value="Google Ads Landing Page">
+        <form id="enquiryForm" novalidate>
           <div class="form-group">
             <input type="text" name="name" placeholder="Your name" required>
           </div>
@@ -722,17 +720,27 @@
 
       try {
         const data = new FormData(form);
-        const res = await fetch(form.action, {
+        const payload = {
+          name: data.get('name'),
+          phone: data.get('phone'),
+          email: data.get('email'),
+          service: data.get('service'),
+          message: data.get('message'),
+        };
+
+        const res = await fetch('https://assistant-36b1ac32.base44.app/functions/wdgEnquiry', {
           method: 'POST',
-          body: data,
-          headers: { 'Accept': 'application/json' }
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
         });
 
-        if (res.ok) {
+        const json = await res.json();
+
+        if (res.ok && json.ok) {
           form.style.display = 'none';
           successMsg.style.display = 'block';
         } else {
-          throw new Error('Failed');
+          throw new Error(json.error || 'Failed');
         }
       } catch (err) {
         btn.textContent = originalText;
