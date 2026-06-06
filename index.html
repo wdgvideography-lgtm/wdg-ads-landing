@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WDG Videography | Cheltenham Video Production & Web Design</title>
+  <meta name="description" content="Cinematic video production, social media management and web design for businesses in Cheltenham & Gloucestershire. Book a free consultation today.">
+  <!-- No index — this is a paid ads landing page -->
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #E8A020;
+      --dark: #0a0a0a;
+      --mid: #111111;
+      --text: #e8e8e8;
+      --muted: #888;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── STICKY TOP BAR ── */
+    .topbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(232,160,32,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 32px;
+    }
+
+    .topbar-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .topbar-logo img {
+      height: 36px;
+      width: auto;
+    }
+
+    .topbar-logo span {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--text);
+      letter-spacing: 0.02em;
+    }
+
+    .topbar-cta {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .topbar-phone {
+      color: var(--gold);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+
+    .topbar-phone:hover { opacity: 0.8; }
+
+    .btn-primary {
+      background: var(--gold);
+      color: #000;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 10px 22px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 32px 80px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #0a0a0a 0%, #111 50%, #0d0900 100%);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(232,160,32,0.08) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(232,160,32,0.1);
+      border: 1px solid rgba(232,160,32,0.3);
+      border-radius: 100px;
+      padding: 6px 14px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 900;
+      line-height: 1.1;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span { color: var(--gold); }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: #aaa;
+      line-height: 1.7;
+      max-width: 520px;
+      margin-bottom: 36px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn-secondary {
+      color: var(--text);
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      padding-bottom: 2px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-secondary:hover {
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+
+    /* Contact card */
+    .contact-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 36px 32px;
+      backdrop-filter: blur(6px);
+    }
+
+    .contact-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .contact-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 0.9rem;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: #555; }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--gold);
+    }
+
+    .form-group select option { background: #1a1a1a; color: var(--text); }
+
+    .form-group textarea { resize: none; height: 80px; }
+
+    .form-submit {
+      width: 100%;
+      padding: 14px;
+      font-size: 0.95rem;
+    }
+
+    .form-note {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 10px;
+    }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      background: rgba(232,160,32,0.06);
+      border-top: 1px solid rgba(232,160,32,0.15);
+      border-bottom: 1px solid rgba(232,160,32,0.15);
+      padding: 20px 32px;
+    }
+
+    .trust-bar-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: #bbb;
+      font-weight: 500;
+    }
+
+    .trust-icon {
+      color: var(--gold);
+      font-size: 1.1rem;
+    }
+
+    /* ── SERVICES ── */
+    .section {
+      padding: 80px 32px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+
+    .section-sub {
+      font-size: 1rem;
+      color: #888;
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 48px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .service-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 28px 24px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .service-card:hover {
+      border-color: rgba(232,160,32,0.4);
+      background: rgba(232,160,32,0.04);
+    }
+
+    .service-icon {
+      font-size: 1.6rem;
+      margin-bottom: 14px;
+    }
+
+    .service-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .service-card p {
+      font-size: 0.85rem;
+      color: #777;
+      line-height: 1.6;
+    }
+
+    /* ── PROCESS ── */
+    .process-section {
+      background: var(--mid);
+      padding: 80px 32px;
+    }
+
+    .process-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .process-step {
+      position: relative;
+    }
+
+    .step-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 900;
+      color: rgba(232,160,32,0.15);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .process-step h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .process-step p {
+      font-size: 0.82rem;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* ── CTA BAND ── */
+    .cta-band {
+      background: linear-gradient(135deg, rgba(232,160,32,0.12) 0%, rgba(232,160,32,0.04) 100%);
+      border-top: 1px solid rgba(232,160,32,0.2);
+      border-bottom: 1px solid rgba(232,160,32,0.2);
+      padding: 70px 32px;
+      text-align: center;
+    }
+
+    .cta-band h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .cta-band p {
+      font-size: 1rem;
+      color: #888;
+      max-width: 500px;
+      margin: 0 auto 32px;
+      line-height: 1.7;
+    }
+
+    .cta-actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(232,160,32,0.5);
+      color: var(--gold);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      padding: 11px 24px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn-outline:hover {
+      background: rgba(232,160,32,0.1);
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 32px;
+      text-align: center;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: #444;
+    }
+
+    .footer-link {
+      font-size: 0.8rem;
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .footer-link:hover { opacity: 0.8; }
+
+    /* ── SUCCESS MESSAGE ── */
+    .success-msg {
+      display: none;
+      background: rgba(232,160,32,0.1);
+      border: 1px solid rgba(232,160,32,0.4);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+      color: var(--gold);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+      .contact-card { order: -1; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .process-steps { grid-template-columns: 1fr 1fr; }
+      .topbar-phone { display: none; }
+    }
+
+    @media (max-width: 580px) {
+      .topbar { padding: 12px 20px; }
+      .hero { padding: 100px 20px 60px; }
+      .section { padding: 60px 20px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr; }
+      .trust-bar-inner { gap: 20px; }
+      .hero-actions { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <a class="topbar-logo" href="https://wdgvideography.com" target="_blank" rel="noopener">
+      <img src="https://wdgvideography.com/favicon.ico" alt="WDG Videography" onerror="this.style.display='none'">
+      <span>WDG Videography</span>
+    </a>
+    <div class="topbar-cta">
+      <a class="topbar-phone" href="tel:+447584065559">+44 7584 065559</a>
+      <a class="btn-primary" href="#enquire">Get a Free Quote</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-eyebrow">Cheltenham, Gloucestershire</div>
+        <h1>Grow Your Business With <span>Cinematic Video</span> & Professional Web Design</h1>
+        <p class="hero-sub">
+          WDG Videography creates high-end video content and conversion-focused websites for local businesses across the Midlands and South. We don't just produce content — we build the full marketing framework around your brand.
+        </p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="#enquire">Book a Free Consultation</a>
+          <a class="btn-secondary" href="https://wdgvideography.com" target="_blank" rel="noopener">View full website →</a>
+        </div>
+      </div>
+
+      <!-- ENQUIRY FORM -->
+      <div id="enquire" class="contact-card">
+        <h3>Get a Free Quote</h3>
+        <p>We'll get back to you within 24 hours.</p>
+        <form id="enquiryForm" action="https://formspree.io/f/xvzyvwgb" method="POST" novalidate>
+          <input type="hidden" name="_subject" value="New Google Ads Enquiry — WDG Landing Page">
+          <input type="hidden" name="source" value="Google Ads Landing Page">
+          <div class="form-group">
+            <input type="text" name="name" placeholder="Your name" required>
+          </div>
+          <div class="form-group">
+            <input type="tel" name="phone" placeholder="Phone number" required>
+          </div>
+          <div class="form-group">
+            <input type="email" name="email" placeholder="Email address" required>
+          </div>
+          <div class="form-group">
+            <select name="service" required>
+              <option value="" disabled selected>What are you interested in?</option>
+              <option value="Video Production">Video Production</option>
+              <option value="Web Design">Web Design</option>
+              <option value="Social Media Management">Social Media Management</option>
+              <option value="Full Marketing Package">Full Marketing Package</option>
+              <option value="Not sure yet">Not sure yet — let's chat</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <textarea name="message" placeholder="Tell us a bit about your business (optional)"></textarea>
+          </div>
+          <button type="submit" class="btn-primary form-submit">Send My Enquiry</button>
+          <p class="form-note">Free consultation • No obligation • Based in Cheltenham</p>
+        </form>
+        <div class="success-msg" id="successMsg">
+          ✓ Message sent! We'll be in touch within 24 hours.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-bar-inner">
+      <div class="trust-item">
+        <span class="trust-icon">✦</span>
+        Based in Cheltenham, Gloucestershire
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">✦</span>
+        High-end cinematic production
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">✦</span>
+        Full-service digital management
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">✦</span>
+        Free initial consultation
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <div class="section">
+    <p class="section-label">What We Do</p>
+    <h2 class="section-title">Everything Your Business Needs to Stand Out Online</h2>
+    <p class="section-sub">From a single video shoot to a complete digital overhaul — we cover it all under one roof.</p>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🎬</div>
+        <h4>Cinematic Video Production</h4>
+        <p>Brand films, social reels, event coverage and commercial content shot with professional cinema-grade equipment.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💻</div>
+        <h4>Web Design</h4>
+        <p>Custom-designed, mobile-responsive websites built to convert visitors into customers. SEO-optimised from day one.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📱</div>
+        <h4>Social Media Management</h4>
+        <p>Strategic content planning, shooting and posting across Instagram, TikTok, Facebook and LinkedIn.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🎯</div>
+        <h4>Brand Strategy</h4>
+        <p>Building a visual identity and content strategy that sets you apart from every competitor in your market.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🚁</div>
+        <h4>Drone Footage</h4>
+        <p>Stunning aerial shots to showcase your premises, events or location in a way that leaves a lasting impression.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📈</div>
+        <h4>Full Marketing Packages</h4>
+        <p>Monthly retainers covering video, social, web and strategy — everything managed for you so you can focus on your business.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROCESS -->
+  <div class="process-section">
+    <div class="process-inner">
+      <p class="section-label">How It Works</p>
+      <h2 class="section-title">Simple Process, Serious Results</h2>
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-num">01</div>
+          <h4>Free Consultation</h4>
+          <p>We discuss your goals, brand, and what you need. No obligation, no hard sell.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">02</div>
+          <h4>Tailored Plan</h4>
+          <p>We put together a specific proposal — the right services at the right price for your business.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">03</div>
+          <h4>Production</h4>
+          <p>We shoot, edit and deliver high-end content with fast turnaround and clear communication throughout.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">04</div>
+          <h4>Growth</h4>
+          <p>Your content goes live and we track performance — then we build on what works.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA BAND -->
+  <div class="cta-band">
+    <h2>Ready to Elevate Your Business?</h2>
+    <p>Book a free 30-minute consultation and we'll show you exactly what's possible for your brand.</p>
+    <div class="cta-actions">
+      <a class="btn-primary" href="#enquire">Book a Free Consultation</a>
+      <a class="btn-outline" href="tel:+447584065559">Call +44 7584 065559</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="footer-copy">© 2026 WDG Videography · Cheltenham, Gloucestershire · wdg.videography@gmail.com</span>
+      <a class="footer-link" href="https://wdgvideography.com" target="_blank" rel="noopener">Visit full website →</a>
+    </div>
+  </footer>
+
+  <script>
+    // Form submission handler
+    const form = document.getElementById('enquiryForm');
+    const successMsg = document.getElementById('successMsg');
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const btn = form.querySelector('.form-submit');
+      const originalText = btn.textContent;
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+
+      try {
+        const data = new FormData(form);
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (res.ok) {
+          form.style.display = 'none';
+          successMsg.style.display = 'block';
+        } else {
+          throw new Error('Failed');
+        }
+      } catch (err) {
+        btn.textContent = originalText;
+        btn.disabled = false;
+        alert('Something went wrong — please call us directly on +44 7584 065559');
+      }
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
