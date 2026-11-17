@@ -678,15 +678,15 @@
     <div class="prices">
       <div class="price-group">
         <h4>Video production</h4>
-        <a class="price-row" href="#enquire" data-service="Video Production"><span>Bespoke Project<small>8 hour shoot, 3–5 min cinematic film, 8 reels</small></span><b>£1,200</b></a>
-        <a class="price-row rec" href="#enquire" data-service="Video Production"><span>Business Growth<span class="rec-tag">RECOMMENDED</span><small>4 hour shoot, 2 min brand video, 5 reels</small></span><b>£650</b></a>
-        <a class="price-row" href="#enquire" data-service="Video Production"><span>Basic Service<small>2 hour shoot, 60 second video, 4 reels</small></span><b>£450</b></a>
+        <a class="price-row" href="#enquire" data-service="Video Production" data-package="Bespoke Project"><span>Bespoke Project<small>8 hour shoot, 3–5 min cinematic film, 8 reels</small></span><b>£1,200</b></a>
+        <a class="price-row rec" href="#enquire" data-service="Video Production" data-package="Business Growth"><span>Business Growth<span class="rec-tag">RECOMMENDED</span><small>4 hour shoot, 2 min brand video, 5 reels</small></span><b>£650</b></a>
+        <a class="price-row" href="#enquire" data-service="Video Production" data-package="Basic Service"><span>Basic Service<small>2 hour shoot, 60 second video, 4 reels</small></span><b>£450</b></a>
       </div>
       <div class="price-group">
         <h4>Websites</h4>
-        <a class="price-row" href="#enquire" data-service="Web Design"><span>Bespoke Platform<small>Booking, ordering or client portals</small></span><b>Up to £7,000</b></a>
-        <a class="price-row rec" href="#enquire" data-service="Web Design"><span>Growth Website<span class="rec-tag">RECOMMENDED</span><small>Service and location pages, photo and video included</small></span><b>From £3,000</b></a>
-        <a class="price-row" href="#enquire" data-service="Web Design"><span>Business Website<small>Custom design, mobile-ready, SEO set-up</small></span><b>From £800</b></a>
+        <a class="price-row" href="#enquire" data-service="Web Design" data-package="Bespoke Platform"><span>Bespoke Platform<small>Booking, ordering or client portals</small></span><b>Up to £7,000</b></a>
+        <a class="price-row rec" href="#enquire" data-service="Web Design" data-package="Growth Website"><span>Growth Website<span class="rec-tag">RECOMMENDED</span><small>Service and location pages, photo and video included</small></span><b>From £3,000</b></a>
+        <a class="price-row" href="#enquire" data-service="Web Design" data-package="Business Website"><span>Business Website<small>Custom design, mobile-ready, SEO set-up</small></span><b>From £800</b></a>
       </div>
     </div>
     <p class="price-note">No VAT to add: the price you see is the price you pay. Every project starts with a free consultation.</p>
@@ -803,6 +803,8 @@
       for (var i = 0; i < sel.options.length; i++) {
         if (sel.options[i].value === a.dataset.service) { sel.selectedIndex = i; break; }
       }
+      var msg = document.querySelector('#enquiryForm textarea[name="message"]');
+      if (msg && !msg.value.trim() && a.dataset.package) msg.value = 'Interested in the ' + a.dataset.package + ' package. ';
     });
   });
 </script>
