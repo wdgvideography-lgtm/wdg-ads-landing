@@ -601,7 +601,7 @@
           <p class="form-note">Free consultation • No obligation • Based in Cheltenham</p>
         </form>
         <div class="success-msg" id="successMsg">
-          ✓ Thank you. Your enquiry is with Will, and he'll reply personally, usually within a couple of days, with a few questions and a rough price.
+          ✓ Thank you. Your enquiry is with Will, and he'll reply personally, usually within a couple of days, with a few questions and a fixed, no-obligation price.
         </div>
       </div>
     </div>
@@ -777,7 +777,7 @@
         if (res.ok && json.ok) {
           // Peak-end: thank them by first name and say what happens next (set as text, never HTML).
           const first = String(payload.name || '').trim().split(/\s+/)[0];
-          successMsg.textContent = '✓ Thank you' + (first ? ', ' + first : '') + ". Your enquiry is with Will, and he'll reply personally, usually within a couple of days, with a few questions and a rough price.";
+          successMsg.textContent = '✓ Thank you' + (first ? ', ' + first : '') + ". Your enquiry is with Will, and he'll reply personally, usually within a couple of days, with a few questions and a fixed, no-obligation price.";
           form.style.display = 'none';
           successMsg.style.display = 'block';
         } else {
