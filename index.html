@@ -331,6 +331,17 @@
       margin-bottom: 48px;
     }
 
+    /* Prices at a glance: dearest first so the middle option reads as good value (anchoring). */
+    .prices { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; }
+    .price-group h4 { color: var(--gold); font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px; }
+    .price-row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 16px 18px; border: 1px solid #222; background: var(--mid); color: var(--text); text-decoration: none; margin-bottom: 10px; transition: border-color .2s; }
+    .price-row:hover, .price-row:focus-visible { border-color: var(--gold); }
+    .price-row.rec { border-color: var(--gold); }
+    .price-row b { font-size: 1.15rem; white-space: nowrap; }
+    .price-row small { display: block; color: var(--muted); font-size: 0.82rem; margin-top: 4px; }
+    .rec-tag { display: inline-block; margin-left: 8px; font-size: 0.65rem; letter-spacing: 0.12em; color: var(--dark); background: var(--gold); padding: 2px 6px; vertical-align: middle; }
+    .price-note { color: var(--muted); font-size: 0.85rem; margin-top: 18px; }
+    @media (max-width: 760px) { .prices { grid-template-columns: 1fr; } }
     .services-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -635,6 +646,7 @@
         <h4>Web Design</h4>
         <p>Custom-designed, mobile-responsive websites built to convert visitors into customers. SEO-optimised from day one.</p>
       </div>
+
       <div class="service-card">
         <div class="service-icon">📱</div>
         <h4>Social Media Management</h4>
@@ -656,6 +668,28 @@
         <p>Monthly retainers covering video, social, web and strategy — everything managed for you so you can focus on your business.</p>
       </div>
     </div>
+  </div>
+
+  <!-- PRICES -->
+  <div class="section">
+    <p class="section-label">Prices</p>
+    <h2 class="section-title">Clear Prices, Before You Ask</h2>
+    <p class="section-sub">The same packages as on our main website. Pick one to start your enquiry with it already chosen.</p>
+    <div class="prices">
+      <div class="price-group">
+        <h4>Video production</h4>
+        <a class="price-row" href="#enquire" data-service="Video Production" data-package="Bespoke Project"><span>Bespoke Project<small>8 hour shoot, 3–5 min cinematic film, 8 reels</small></span><b>£1,200</b></a>
+        <a class="price-row rec" href="#enquire" data-service="Video Production" data-package="Business Growth"><span>Business Growth<span class="rec-tag">RECOMMENDED</span><small>4 hour shoot, 2 min brand video, 5 reels</small></span><b>£650</b></a>
+        <a class="price-row" href="#enquire" data-service="Video Production" data-package="Basic Service"><span>Basic Service<small>2 hour shoot, 60 second video, 4 reels</small></span><b>£450</b></a>
+      </div>
+      <div class="price-group">
+        <h4>Websites</h4>
+        <a class="price-row" href="#enquire" data-service="Web Design" data-package="Bespoke Platform"><span>Bespoke Platform<small>Booking, ordering or client portals</small></span><b>Up to £7,000</b></a>
+        <a class="price-row rec" href="#enquire" data-service="Web Design" data-package="Growth Website"><span>Growth Website<span class="rec-tag">RECOMMENDED</span><small>Service and location pages, photo and video included</small></span><b>From £3,000</b></a>
+        <a class="price-row" href="#enquire" data-service="Web Design" data-package="Business Website"><span>Business Website<small>Custom design, mobile-ready, SEO set-up</small></span><b>From £800</b></a>
+      </div>
+    </div>
+    <p class="price-note">No VAT to add: the price you see is the price you pay. Every project starts with a free consultation.</p>
   </div>
 
   <!-- PROCESS -->
@@ -760,7 +794,20 @@
         }
       });
     });
-  </script>
+  
+  // Smart default: a price row opens the form with its service already chosen.
+  document.querySelectorAll('.price-row[data-service]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      var sel = document.querySelector('#enquiryForm select[name="service"]');
+      if (!sel) return;
+      for (var i = 0; i < sel.options.length; i++) {
+        if (sel.options[i].value === a.dataset.service) { sel.selectedIndex = i; break; }
+      }
+      var msg = document.querySelector('#enquiryForm textarea[name="message"]');
+      if (msg && !msg.value.trim() && a.dataset.package) msg.value = 'Interested in the ' + a.dataset.package + ' package. ';
+    });
+  });
+</script>
 
 </body>
 </html>
