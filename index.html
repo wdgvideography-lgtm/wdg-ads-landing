@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -572,7 +572,7 @@
       <!-- ENQUIRY FORM -->
       <div id="enquire" class="contact-card">
         <h3>Get a Free Quote</h3>
-        <p>We'll get back to you within 24 hours.</p>
+        <p>We'll reply personally, usually within a couple of days.</p>
         <form id="enquiryForm" novalidate>
           <div class="form-group">
             <input type="text" name="name" placeholder="Your name" required>
@@ -601,7 +601,7 @@
           <p class="form-note">Free consultation • No obligation • Based in Cheltenham</p>
         </form>
         <div class="success-msg" id="successMsg">
-          ✓ Message sent! We'll be in touch within 24 hours.
+          ✓ Thank you. Your enquiry is with Will, and he'll reply personally, usually within a couple of days, with a few questions and a rough price.
         </div>
       </div>
     </div>
@@ -690,6 +690,7 @@
       </div>
     </div>
     <p class="price-note">No VAT to add: the price you see is the price you pay. Every project starts with a free consultation.</p>
+    <p class="price-note">Recent websites: The Longhorn Bar &amp; Grill, AMC Transport Solutions and WDG Agriculture.</p>
   </div>
 
   <!-- PROCESS -->
@@ -747,6 +748,8 @@
 
     form.addEventListener('submit', async function(e) {
       e.preventDefault();
+      // The form is novalidate (for custom styling), so check the required fields here before sending.
+      if (!form.checkValidity()) { form.reportValidity(); return; }
 
       const btn = form.querySelector('.form-submit');
       const originalText = btn.textContent;
@@ -772,6 +775,9 @@
         const json = await res.json();
 
         if (res.ok && json.ok) {
+          // Peak-end: thank them by first name and say what happens next (set as text, never HTML).
+          const first = String(payload.name || '').trim().split(/\s+/)[0];
+          successMsg.textContent = '✓ Thank you' + (first ? ', ' + first : '') + ". Your enquiry is with Will, and he'll reply personally, usually within a couple of days, with a few questions and a rough price.";
           form.style.display = 'none';
           successMsg.style.display = 'block';
         } else {
